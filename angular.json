@@ -38,6 +38,15 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "primeng/primeng",
+              "primeicons",
+              "chart.js",
+              "file-saver",
+              "html2pdf.js",
+              "xlsx",
+              "jspdf"
+            ],
             "outputPath": "dist/horarioAPP",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -49,7 +58,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/primeflex/primeflex.css",
+              "./node_modules/primeng/resources/primeng.min.css",
+              "./node_modules/primeicons/primeicons.css",
+              "./node_modules/primeng/resources/themes/md-light-indigo/theme.css"
             ],
             "scripts": []
           },
