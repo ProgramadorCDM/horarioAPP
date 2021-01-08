@@ -29,7 +29,6 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { PickListModule } from 'primeng/picklist';
 import { ToggleButtonModule } from 'primeng/togglebutton';
-import { ChartModule } from 'primeng/chart';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { CardModule } from 'primeng/card';
 import { GalleriaModule } from 'primeng/galleria';
@@ -66,7 +65,6 @@ const myModule = [
   DynamicDialogModule,
   PickListModule,
   ToggleButtonModule,
-  ChartModule,
   KeyFilterModule,
   CardModule,
   GalleriaModule,

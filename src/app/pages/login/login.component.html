@@ -1,1 +1,39 @@
-<p>login works!</p>
+<div class="content">
+  <header>Iniciar Sesión</header>
+  <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && onSubmit()">
+    <div class="field">
+      <span class="fa fa-user"></span>
+      <input type="text" required placeholder="Usuario" formControlName="username" />
+    </div>
+    <div class="field space">
+      <span class="fa fa-lock"></span>
+      <input
+        type="password"
+        class="pass__key"
+        required
+        placeholder="Contraseña"
+        formControlName="password"
+      />
+      <span class="show" (click)="mostrarBtn()">Mostrar</span>
+    </div>
+    <div class="pass">
+      <a href="#">¿Olvidaste tu Contraseña?</a>
+    </div>
+    <div class="field">
+      <input type="submit" value="Login"/>
+    </div>
+  </form>
+  <div class="login">Iniciar sesión con</div>
+  <div class="links">
+    <div class="facebook">
+      <i class="fab fa-facebook-f"><span>Facebook</span></i>
+    </div>
+    <div class="google">
+      <i class="fab fa-google"><span>Google</span></i>
+    </div>
+  </div>
+  <div class="signup">
+    ¿Aún no estás Registrado?
+    <a href="#">Regístrate</a>
+  </div>
+</div>

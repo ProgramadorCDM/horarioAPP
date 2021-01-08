@@ -4,11 +4,19 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Oswald", sans-serif;
 }
 
-html ,
 body {
+  width: 100%;
+  height: 100vh;
+}
+
+.bg__img {
+  width: 100%;
+  height: 100%;
   background: url(../src/assets/img/fondoooooooooooooooooooo.png) center center fixed;
   background-repeat: no-repeat;
+  background-size: cover;
   background-size: 100% 100%;
 }
