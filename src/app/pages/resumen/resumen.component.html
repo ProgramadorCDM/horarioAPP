@@ -1,2 +1,17 @@
-<p>resumen works!</p>
-<router-outlet></router-outlet>
+<nav>
+  <input type="checkbox" id="check">
+  <label for="check" class="checkbtn">
+    <i class="pi pi-bars"></i>
+  </label>
+  <label class="logo">Control Horario</label>
+  <ul>
+    <li><a href="#"><i class="pi pi-users"></i>Personas</a></li>
+    <li><a href="#"><i class="pi pi-angle-down"></i>Proyectos</a></li>
+    <li><a href="#"><i class="pi pi-file"></i>entradas</a></li>
+    <li><a href="#"><i class="pi pi-book"></i>Informes</a></li>
+    <li><a href="#"><i class="pi pi-power-off"></i>Cerrar Sesión</a></li>
+  </ul>
+</nav>
+<section>
+  <router-outlet></router-outlet>
+</section>
