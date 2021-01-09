@@ -1,0 +1,112 @@
+<div class="main__container">
+  <p-panel header="Administracion Proyectos">
+    <p-menubar [model]="items">
+      <div class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input
+          type="text"
+          pInputText
+          (input)="dt.filterGlobal($event.target.value, 'contains')"
+          placeholder="Buscar"
+        />
+      </div>
+    </p-menubar>
+    <p-table
+      #dt
+      [value]="proyectos"
+      [paginator]="true"
+      selectionMode="single"
+      [(selection)]="selectedProyecto"
+      dataKey="idProyecto"
+      [rows]="10"
+      [responsive]="true"
+      [rowsPerPageOptions]="[10, 20, 30]"
+      [globalFilterFields]="['idProyecto', 'nombre']"
+      styleClass="p-datatable-sm"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 5%">#</th>
+          <th style="width: 15%">Código</th>
+          <th style="width: 80%">Nombre</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowIndex="rowIndex" let-proyecto>
+        <tr [pSelectableRow]="proyecto">
+          <td>{{ rowIndex + 1 }}</td>
+          <td>{{ proyecto.idProyecto }}</td>
+          <td>{{ proyecto.nombre }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary"></ng-template>
+    </p-table>
+  </p-panel>
+</div>
+
+<p-dialog
+  header="Nuevo Proyecto"
+  [(visible)]="displaySaveDialog"
+  [focusOnShow]="false"
+  showEffect="fade"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+>
+  <form [formGroup]="formProyecto">
+    <div class="p-fluid p-formgrid" style="margin: 1em 0">
+      <div>
+        <div>Código *</div>
+        <input
+          pInputText
+          type="text"
+          formControlName="idProyecto"
+          placeholder="Requerido"
+        />
+        <p-message
+          severity="error"
+          text="El codigo del proyecto es necesario"
+          *ngIf="
+            !formProyecto.controls['idProyecto'].valid &&
+            formProyecto.controls['idProyecto'].dirty
+          "
+        ></p-message>
+      </div>
+    </div>
+    <div class="p-fluid p-formgrid" style="margin: 1em 0">
+      <div>
+        <div>Nombres *</div>
+        <input
+          pInputText
+          type="text"
+          formControlName="nombre"
+          placeholder="Requerido"
+        />
+        <p-message
+          severity="error"
+          text="ingrese un nombre valido"
+          *ngIf="
+            !formProyecto.controls['nombre'].valid &&
+            formProyecto.controls['nombre'].dirty
+          "
+        ></p-message>
+      </div>
+    </div>
+  </form>
+  <p-footer>
+      <button
+        type="button"
+        pButton
+        icon="pi pi-check"
+        (click)="displaySaveDialog = false; onGuardar()"
+        label="Aceptar"
+        [disabled]="!formProyecto.valid"
+      ></button>
+      <button
+        type="button"
+        pButton
+        icon="pi pi-times"
+        (click)="displaySaveDialog = false; formProyecto.reset()"
+        label="Cancelar"
+        class="ui-button-secondary"
+      ></button>
+    </p-footer>
+</p-dialog>

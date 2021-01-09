@@ -7,10 +7,11 @@ import { PrimengModule } from 'src/app/shared/primeng.module';
 /* Components */
 import { HomeComponent } from './components/home/home.component';
 import { PersonasComponent } from './components/personas/personas.component';
+import { ProyectosComponent } from './components/proyectos/proyectos.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, PersonasComponent],
+  declarations: [HomeComponent, PersonasComponent, ProyectosComponent],
   imports: [
     CommonModule,
     ResumenRoutingModule,

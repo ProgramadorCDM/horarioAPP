@@ -1,26 +1,36 @@
 <nav>
-  <input type="checkbox" id="check" [(ngModel)]="check"/>
+  <input type="checkbox" id="check" [(ngModel)]="check" />
   <label for="check" class="checkbtn">
     <i class="pi pi-bars"></i>
   </label>
   <label class="logo">Control Horario</label>
   <ul>
     <li>
-      <a [routerLink]="['personas']" routerLinkActive="active" (click)="check=false"
+      <a
+        [routerLink]="['personas']"
+        routerLinkActive="active"
+        (click)="check = false"
         ><i class="pi pi-users"></i>Personas</a
       >
     </li>
     <li>
-      <a href="#"(click)="check=false"><i class="pi pi-angle-down"></i>Proyectos</a>
+      <a
+        [routerLink]="['proyectos']"
+        routerLinkActive="active"
+        (click)="check = false"
+        ><i class="pi pi-angle-down"></i>Proyectos</a
+      >
     </li>
     <li>
-      <a href="#"(click)="check=false"><i class="pi pi-file"></i>entradas</a>
+      <a href="#" (click)="check = false"><i class="pi pi-file"></i>entradas</a>
     </li>
     <li>
-      <a href="#"(click)="check=false"><i class="pi pi-book"></i>Informes</a>
+      <a href="#" (click)="check = false"><i class="pi pi-book"></i>Informes</a>
     </li>
     <li>
-      <a href="#"(click)="check=false; logout()"><i class="pi pi-power-off"></i>Cerrar Sesión</a>
+      <a href="#" (click)="check = false; logout()"
+        ><i class="pi pi-power-off"></i>Cerrar Sesión</a
+      >
     </li>
   </ul>
 </nav>

@@ -81,6 +81,7 @@ export class PersonasComponent implements OnInit {
   }
 
   mostrarDialogoGuardar(editar: boolean) {
+    this.personaForm.reset();
     if (editar) {
       if (this.selectedPersona != null && this.selectedPersona.cedula != null) {
         this.personaForm.patchValue(this.selectedPersona);
