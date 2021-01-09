@@ -15,7 +15,8 @@
   z-index: 999;
   text-align: center;
   padding: 60px 32px;
-  width: 370px;
+  width: 90vw;
+  max-width: 370px;
   transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.04);
   box-shadow: -1px 4px 28px 0px rgba(0, 0, 0, 0.75);
@@ -57,7 +58,7 @@
 
 .show {
   position: absolute;
-  right: 13px;
+  right: 25px;
   color: #222222;
   display: none;
   cursor: pointer;

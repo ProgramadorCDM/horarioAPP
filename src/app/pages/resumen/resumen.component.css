@@ -6,7 +6,7 @@ nav {
 
 label.logo{
   color: white;
-  font-size: 36px;
+  font-size: 34px;
   line-height: 80px;
   padding: 0 100px;
   font-weight: bold;
@@ -25,7 +25,7 @@ nav ul li {
 
 nav ul li a {
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   padding: 7px 13px;
   border-radius: 3px;
   text-transform: uppercase;
@@ -51,7 +51,7 @@ a.active{
 }
 
 .checkbtn{
-  font-size: 30px;
+  font-size: 28px;
   color: white;
   float: right;
   line-height: 80px;
@@ -66,12 +66,12 @@ a.active{
 
 @media(max-width: 952px){
   label.logo{
-    font-size: 30px;
+    font-size: 28px;
     padding-left: 50px;
   }
 
   nav ul li a {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -89,6 +89,7 @@ a.active{
     left: -100%;
     text-align: center;
     transition: all .5s;
+    z-index: 1000;
   }
 
   nav ul li {

@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 // RxJS
 import { Observable } from "rxjs";
 // Modelo
-import { Persona } from "src/app/models/Persona";
+import { Persona } from "src/app/core/models/Persona";
 
 /**
  * Direccion base de la API_REST

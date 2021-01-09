@@ -1,0 +1,154 @@
+<div class="container__personas">
+  <p-panel header="Administracion de Personas">
+    <p-menubar [model]="items">
+      <div class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input
+          type="text"
+          pInputText
+          (input)="dt.filterGlobal($event.target.value, 'contains')"
+          placeholder="Buscar"
+        />
+      </div>
+    </p-menubar>
+    <p-table
+      #dt
+      [value]="personas"
+      [paginator]="true"
+      selectionMode="single"
+      [(selection)]="selectedPersona"
+      dataKey="cedula"
+      [rows]="10"
+      [rowsPerPageOptions]="[10, 20, 30]"
+      [responsive]="true"
+      [globalFilterFields]="['cedula', 'nombre', 'salario']"
+      styleClass="p-datatable-sm"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 3rem">#</th>
+          <th pSortableColumn="cedula">
+            Cedula <p-sortIcon field="cedula"></p-sortIcon>
+          </th>
+          <th pSortableColumn="nombre">
+            Nombre <p-sortIcon field="nombre"></p-sortIcon>
+          </th>
+          <th pSortableColumn="salario">
+            Salario <p-sortIcon field="salario"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowIndex="rowIndex" let-persona>
+        <tr [pSelectableRow]="persona">
+          <td>{{ rowIndex + 1 }}</td>
+          <td>{{ persona.cedula }}</td>
+          <td>{{ persona.nombre }}</td>
+          <td>{{ persona.salario | currency }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div style="text-align: left">
+          Trabajador Seleccionado:
+          {{
+            selectedPersona
+              ? selectedPersona.cedula +
+                " - " +
+                selectedPersona.nombre +
+                " " +
+                selectedPersona.salario
+              : "Ninguno"
+          }}
+        </div>
+      </ng-template>
+    </p-table>
+  </p-panel>
+</div>
+
+<p-dialog
+  header="{{tituloModal}} Persona"
+  [(visible)]="displaySaveDialog"
+  [focusOnShow]="false"
+  [responsive]="true"
+  showEffect="fade"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+>
+  <form [formGroup]="personaForm">
+    <div class="p-fluid p-formgrid" style="margin: 1em 0">
+      <div>
+        <div>Cedula *</div>
+        <input
+          pInputText
+          type="text"
+          formControlName="cedula"
+          placeholder="Requerido"
+        />
+        <p-message
+          severity="error"
+          text="La Cedula Es Requerida"
+          *ngIf="
+            !personaForm.controls['cedula'].valid &&
+            personaForm.controls['cedula'].dirty
+          "
+        ></p-message>
+      </div>
+    </div>
+    <div class="p-fluid p-formgrid" style="margin: 1em 0">
+      <div>
+        <div>Nombres *</div>
+        <input
+          pInputText
+          type="text"
+          formControlName="nombre"
+          placeholder="Requerido"
+        />
+        <p-message
+          severity="error"
+          text="ingrese un nombre valido"
+          *ngIf="
+            !personaForm.controls['nombre'].valid &&
+            personaForm.controls['nombre'].dirty
+          "
+        ></p-message>
+      </div>
+    </div>
+    <div class="p-fluid p-formgrid" style="margin: 1em 0">
+      <div>
+        <div>Salario *</div>
+        <input
+          pInputText
+          type="number"
+          formControlName="salario"
+          placeholder="Requerido"
+        />
+        <p-message
+          severity="error"
+          text="Ingrese el valor del Salario"
+          *ngIf="
+            !personaForm.controls['salario'].valid &&
+            personaForm.controls['salario'].dirty
+          "
+        ></p-message>
+      </div>
+    </div>
+  </form>
+  <p-footer>
+      <button
+        type="button"
+        pButton
+        icon="pi pi-check"
+        (click)="displaySaveDialog = false; onGuardar()"
+        label="Aceptar"
+        [disabled]="!personaForm.valid"
+      ></button>
+      <button
+        type="button"
+        pButton
+        icon="pi pi-times"
+        (click)="displaySaveDialog = false; personaForm.reset()"
+        label="Cancelar"
+        class="ui-button-secondary"
+      ></button>
+    </p-footer>
+</p-dialog>
