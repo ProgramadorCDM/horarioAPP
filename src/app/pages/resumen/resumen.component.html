@@ -30,7 +30,12 @@
       >
     </li>
     <li>
-      <a href="#" (click)="check = false"><i class="pi pi-book"></i>Informes</a>
+      <a
+        [routerLink]="['informes']"
+        routerLinkActive="active"
+        (click)="check = false"
+        ><i class="pi pi-book"></i>Informes</a
+      >
     </li>
     <li>
       <a href="#" (click)="check = false; logout()"

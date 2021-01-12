@@ -1,0 +1,243 @@
+<div class="main__container">
+  <p-panel
+    header="Informes"
+    [toggleable]="true"
+    [style]="{ width: '100%', margin: '0 auto' }"
+  >
+    <!-- <div style="margin-bottom: 20px;">
+      <p-menubar [model]="items"></p-menubar>
+    </div> -->
+    <p-table
+      #dt
+      id="dt"
+      sortField="persona.cedula"
+      sortMode="single"
+      (onSort)="onSort()"
+      [responsive]="true"
+      [value]="registros"
+      dataKey="persona.cedula"
+      ><ng-template pTemplate="caption">
+        <div class="ui-helper-clearfix" style="text-align: left">
+          <!-- <button
+            type="button"
+            pButton
+            icon="pi pi-file-o"
+            iconPos="left"
+            label="CSV"
+            (click)="dt.exportCSV()"
+            style="margin-right: 0.5em;"
+          ></button> -->
+          <button
+            type="button"
+            pButton
+            icon="pi pi-plus-circle"
+            iconPos="left"
+            label="Nueva Consulta"
+            (click)="display = true"
+            class="p-button-secondary"
+            style="margin-right: 0.5em"
+          ></button>
+          <button
+            type="button"
+            pButton
+            icon="pi pi-file-excel"
+            iconPos="left"
+            label="EXCEL"
+            (click)="exportExcel()"
+            style="margin-right: 0.5em"
+            class="p-button-success"
+          ></button>
+          <button
+            type="button"
+            pButton
+            icon="pi pi-file-pdf"
+            iconPos="left"
+            label="PDF"
+            (click)="exportPdf()"
+            class="p-button-warning"
+          ></button>
+          <!-- <button
+            type="button"
+            pButton
+            icon="pi pi-file"
+            iconPos="left"
+            label="CSV - Selection Only"
+            (click)="dt.exportCSV({ selectionOnly: true })"
+            style="float:right"
+          ></button> -->
+          <p-toggleButton
+            onIcon="pi pi-check"
+            offIcon="pi pi-times"
+            onLabel="Con Prestaciones"
+            offLabel="Sin Prestaciones"
+            iconPos="left"
+            [style]="{ float: 'right' }"
+            [(ngModel)]="prestaciones"
+          ></p-toggleButton>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <!-- <th *ngFor="let col of cols">
+            {{ col.header }}
+          </th> -->
+          <th></th>
+          <th>Entrada</th>
+          <th>Salida</th>
+          <th style="width: 5rem;">RN</th>
+          <th style="width: 5rem;">HE</th>
+          <th style="width: 5rem;">HEN</th>
+          <th style="width: 5rem;">HEF</th>
+          <th style="width: 5rem;">HEFN</th>
+          <th>Proyecto</th>
+          <th>Actividad</th>
+          <th>Total</th>
+        </tr>
+      </ng-template>
+      <!-- <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex"> -->
+      <ng-template
+        pTemplate="body"
+        let-rowData
+        let-rowIndex="rowIndex"
+        let-expanded="expanded"
+        let-columns="columns"
+      >
+        <tr
+          class="ui-widget-header"
+          *ngIf="rowGroupMetadata[rowData.persona.cedula].index === rowIndex"
+        >
+          <td colspan="3">
+            <a href="#" [pRowToggler]="rowData">
+              <i
+                [ngClass]="
+                  expanded
+                    ? 'pi pi-fw pi-chevron-circle-down'
+                    : 'pi pi-fw pi-chevron-circle-right'
+                "
+                style="vertical-align: middle; padding-bottom: 0.1em"
+              ></i>
+              <span style="font-weight: bold"
+                ><b>{{ rowData.persona.nombre }}</b></span
+              >
+            </a>
+          </td>
+          <!-- <td>{{rowGroupMetadata[rowData.persona.cedula].ho}}</td> -->
+          <td>
+            <b>{{ rowGroupMetadata[rowData.persona.cedula].rn }}</b>
+          </td>
+          <td>
+            <b>{{ rowGroupMetadata[rowData.persona.cedula].he }}</b>
+          </td>
+          <td>
+            <b>{{ rowGroupMetadata[rowData.persona.cedula].hen }}</b>
+          </td>
+          <td>
+            <b>{{ rowGroupMetadata[rowData.persona.cedula].hef }}</b>
+          </td>
+          <td>
+            <b>{{ rowGroupMetadata[rowData.persona.cedula].hefn }}</b>
+          </td>
+          <td>Proyecto</td>
+          <td>Actividad</td>
+          <td>
+            <b>
+              {{
+                prestaciones
+                  ? (rowGroupMetadata[rowData.persona.cedula]
+                      .salario_con_prestaciones | currency)
+                  : (rowGroupMetadata[rowData.persona.cedula]
+                      .salario_sin_prestaciones | currency)
+              }}
+            </b>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="rowexpansion" let-rowData let-rowIndex="rowIndex">
+        <tr>
+          <td>{{ rowData.fecha }}</td>
+          <td>{{ rowData.hora_entrada }}</td>
+          <td>{{ rowData.hora_salida }}</td>
+          <td>{{ rowData.recargo_nocturno }}</td>
+          <td>{{ rowData.hora_extra }}</td>
+          <td>{{ rowData.hora_extra_nocturna }}</td>
+          <td>{{ rowData.hora_extra_festiva }}</td>
+          <td>{{ rowData.hora_extra_festiva_nocturna }}</td>
+          <td>{{ rowData.proyecto.nombre }}</td>
+          <td>{{ rowData.actividad }}</td>
+          <td>
+            {{
+              prestaciones
+                ? (rowData.salario_con_prestaciones | currency)
+                : (rowData.salario_sin_prestaciones | currency)
+            }}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-panel>
+</div>
+
+<p-dialog
+  header="Seleccione Rango de Fechas"
+  [style]="{ width: '50vw' }"
+  [(visible)]="display"
+>
+  <div class="ui-g p-fluid">
+    <div class="ui-g-4">
+      <label for="fechaInicial">Fecha Inicio</label>
+    </div>
+    <div class="ui-g-8">
+      <p-calendar
+        dataType="string"
+        [(ngModel)]="fechaInicial"
+        dateFormat="yy-mm-dd"
+        readonlyInput="true"
+        [locale]="es"
+        showButtonBar="true"
+      ></p-calendar>
+    </div>
+    <div class="ui-g-4">
+      <label for="fechaFinal">Fecha Fin</label>
+    </div>
+    <div class="ui-g-8">
+      <p-calendar
+        dataType="string"
+        [(ngModel)]="fechaFinal"
+        dateFormat="yy-mm-dd"
+        [locale]="es"
+        readonlyInput="true"
+        showButtonBar="true"
+      ></p-calendar>
+    </div>
+    <!-- <div class="ui-g-4">Proyecto</div>
+    <div class="ui-g-8">
+      <p-dropdown
+        [options]="proyectos"
+        [(ngModel)]="selectedProyecto"
+        optionLabel="nombre"
+        placeholder="Seleccione Un Proyecto"
+      ></p-dropdown>
+    </div> -->
+    <div class="ui-g-4">Trabajador</div>
+    <div class="ui-g-8">
+      <p-dropdown
+        [options]="personas"
+        [(ngModel)]="selectedPersona"
+        optionLabel="nombre"
+        placeholder="Opcional: Seleccione un trabajador"
+        showClear="true"
+      ></p-dropdown>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button
+        type="button"
+        pButton
+        icon="pi pi-check"
+        (click)="aceptar()"
+        label="Aceptar"
+      ></button>
+    </div>
+  </p-footer>
+</p-dialog>
