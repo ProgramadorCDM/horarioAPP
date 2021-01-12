@@ -38,7 +38,18 @@
           <td>{{ proyecto.nombre }}</td>
         </tr>
       </ng-template>
-      <ng-template pTemplate="summary"></ng-template>
+      <ng-template pTemplate="summary">
+        <div>
+          Proyecto Seleccionado:
+          {{
+            selectedProyecto
+              ? selectedProyecto.idProyecto +
+                " - " +
+                selectedProyecto.nombre
+              : "Ninguno"
+          }}
+        </div>
+      </ng-template>
     </p-table>
   </p-panel>
 </div>
