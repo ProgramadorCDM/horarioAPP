@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 /* Modulos */
@@ -8,10 +8,16 @@ import { PrimengModule } from 'src/app/shared/primeng.module';
 import { HomeComponent } from './components/home/home.component';
 import { PersonasComponent } from './components/personas/personas.component';
 import { ProyectosComponent } from './components/proyectos/proyectos.component';
+import { EntradasComponent } from './components/entradas/entradas.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, PersonasComponent, ProyectosComponent],
+  declarations: [
+    HomeComponent,
+    PersonasComponent,
+    ProyectosComponent,
+    EntradasComponent,
+  ],
   imports: [
     CommonModule,
     ResumenRoutingModule,
@@ -19,5 +25,6 @@ import { ProyectosComponent } from './components/proyectos/proyectos.component';
     FormsModule,
     ReactiveFormsModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ResumenModule {}

@@ -1,0 +1,50 @@
+.container__entradas{
+  width: 99%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wrapper{
+  width: 100%;
+}
+
+.box {
+  border: 1px solid lightgray;
+}
+
+.box label {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 2px 0;
+}
+
+.box input {
+  width: 100%;
+  text-align: center;
+}
+
+.box#boton {
+  border: none;
+  display: grid;
+  place-items: center;
+}
+
+.box .p-multiselect {
+  width: 100%;
+}
+
+.box .mensaje__display{
+  width: 100%;
+  display: grid;
+  grid-row: 1fr;
+  grid-column: 11fr;
+  place-items: center;
+}
+
+.p-dialog .p-dialog-content {
+  overflow-y: inherit;
+}

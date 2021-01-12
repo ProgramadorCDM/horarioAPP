@@ -33,9 +33,7 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { CardModule } from 'primeng/card';
 import { GalleriaModule } from 'primeng/galleria';
 import { InputNumberModule } from 'primeng/inputnumber';
-
-
-
+import { InputMaskModule } from 'primeng/inputmask';
 
 const myModule = [
   ToolbarModule,
@@ -69,6 +67,7 @@ const myModule = [
   CardModule,
   GalleriaModule,
   InputNumberModule,
+  InputMaskModule,
 ];
 
 @NgModule({

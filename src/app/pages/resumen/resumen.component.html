@@ -22,7 +22,12 @@
       >
     </li>
     <li>
-      <a href="#" (click)="check = false"><i class="pi pi-file"></i>entradas</a>
+      <a
+        [routerLink]="['entradas']"
+        routerLinkActive="active"
+        (click)="check = false"
+        ><i class="pi pi-file"></i>entradas</a
+      >
     </li>
     <li>
       <a href="#" (click)="check = false"><i class="pi pi-book"></i>Informes</a>
