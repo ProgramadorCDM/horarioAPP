@@ -45,6 +45,7 @@
               "file-saver",
               "html2pdf.js",
               "xlsx",
+              "jspdf-autotable",
               "jspdf"
             ],
             "outputPath": "dist/horarioAPP",
