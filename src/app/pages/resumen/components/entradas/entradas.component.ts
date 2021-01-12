@@ -166,6 +166,7 @@ export class EntradasComponent implements OnInit {
   }
 
   agregarEntrada() {
+    console.log("guardando");
     this.formEntrada.patchValue({ actividad: this.activity });
     this.formEntrada.patchValue({ fecha: this.date });
     this.formEntrada.patchValue({ festivo: this.isfestivo });
@@ -177,11 +178,10 @@ export class EntradasComponent implements OnInit {
      * Se iguala a otra variable debido a que al reiniciar el formulario
      * este reinicia la variable selectedPersona
      */
-    this.listaPersonas = this.selectedPersona;
+    this.listaPersonas = this.formEntrada.get('persona').value;
     for (let i = 0; i < this.listaPersonas.length; i++) {
       let element = this.listaPersonas[i];
       this.formEntrada.patchValue({ persona: element });
-
       let filter = this.registros.filter(function (a) {
         return a.persona['cedula'] == element.cedula;
       });

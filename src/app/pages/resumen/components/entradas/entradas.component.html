@@ -14,7 +14,6 @@
                     formControlName="persona"
                     styleClass="custom-select"
                     defaultLabel="--Seleccione uno o varios Trabajadores--"
-                    [(ngModel)]="selectedPersona"
                   >
                   </p-multiSelect>
                   <div
@@ -40,7 +39,6 @@
                     formControlName="hora_entrada"
                     mask="99:99"
                     placeholder="00:00"
-                    [(ngModel)]="entradaHora"
                     pKeyFilter="int"
                     styleClass="form-control"
                     required
@@ -72,7 +70,6 @@
                     formControlName="hora_salida"
                     mask="99:99"
                     placeholder="00:00"
-                    [(ngModel)]="salidaHora"
                     pKeyFilter="int"
                     styleClass="form-control"
                     required
@@ -105,6 +102,7 @@
                     class="p-button-outlined"
                     type="submit"
                     label="Registrar Entrada"
+                    (click)="agregarEntrada()"
                   ></button>
                 </div>
               </div>
@@ -227,7 +225,6 @@
         [(ngModel)]="date"
         dateFormat="yy-mm-dd"
         readonlyInput="true"
-        [locale]="es"
         showButtonBar="true"
         required
       ></p-calendar>

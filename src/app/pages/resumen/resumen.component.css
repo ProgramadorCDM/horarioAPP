@@ -6,9 +6,9 @@ nav {
 
 label.logo{
   color: white;
-  font-size: 34px;
+  font-size: 24px;
   line-height: 80px;
-  padding: 0 100px;
+  padding: 0 20px;
   font-weight: bold;
 }
 
@@ -51,7 +51,7 @@ a.active{
 }
 
 .checkbtn{
-  font-size: 28px;
+  font-size: 24px;
   color: white;
   float: right;
   line-height: 80px;
