@@ -32,7 +32,7 @@ export class PersonasComponent implements OnInit {
   ) {}
 
   obtenerPersonas() {
-    this.personaService.getAll().subscribe(
+    this.personaService.getAllActive().subscribe(
       (result: any) => {
         let personas: Persona[] = [];
         for (let i = 0; i < result.length; i++) {
@@ -119,7 +119,8 @@ export class PersonasComponent implements OnInit {
             this.messageService.add({
               severity: 'success',
               summary: 'Resultado',
-              detail: 'Se elimino a la persona ' + result.cedula + ' correctamente',
+              detail:
+                'Se elimino a la persona ' + result.cedula + ' correctamente',
             });
             this.eliminarPersona(result.cedula);
           });
@@ -131,6 +132,24 @@ export class PersonasComponent implements OnInit {
       this.personas.findIndex((e) => e.cedula == cedula),
       1
     );
+  }
+
+  retirarPersona(persona: Persona) {
+    this.confirmationService.confirm({
+      message: `¿Está seguro que desea retirar al trabajador ${persona.nombre}?`,
+      accept: () => {
+        persona.activo = false;
+        this.personaService.save(persona).subscribe((persona: Persona) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Resultado',
+            detail:
+              'Se retiró a la persona ' + persona.cedula + ' correctamente',
+          });
+          this.eliminarPersona(persona.cedula);
+        });
+      }
+    })
   }
 
   onGuardar() {

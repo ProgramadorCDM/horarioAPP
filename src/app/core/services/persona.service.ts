@@ -5,12 +5,13 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 // Modelo
 import { Persona } from "src/app/core/models/Persona";
+/* Environment */
+import { API_URL } from 'src/environments/environment';
 
 /**
  * Direccion base de la API_REST
  */
-const API_URL: String = "http://152.200.130.126/ebackend/api/persona/";
-// const API_URL: String = "http://localhost:8090/api/persona/";
+const URL: String = `${API_URL}/persona/`;
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,11 @@ export class PersonaService {
    * Metodo que nos permite listar todos los elementos de la API_REST
    */
   getAll(): Observable<any>{
-    return this.http.get(API_URL + "all");
+    return this.http.get(URL + "all");
+  }
+  
+  getAllActive():Observable<Persona[]>{
+    return this.http.get<Persona[]>(URL + 'all_active');
   }
 
   /**
@@ -38,7 +43,7 @@ export class PersonaService {
   save (persona: Persona): Observable<any>{
     let headers = new HttpHeaders();
     headers = headers.set("Content-Type", "application/json")
-    return this.http.post(API_URL + "save", JSON.stringify(persona), {
+    return this.http.post(URL + "save", JSON.stringify(persona), {
       headers: headers
     });
   }
@@ -48,7 +53,7 @@ export class PersonaService {
    * @param id Parametro obtenido y enviado a la API_REST
    */
   delete(id: string): Observable<any>{
-    return this.http.get(API_URL + "delete/" +id);
+    return this.http.get(URL + "delete/" +id);
   }
 
 }

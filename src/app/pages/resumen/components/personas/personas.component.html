@@ -27,7 +27,7 @@
       <ng-template pTemplate="header">
         <tr>
           <th style="width: 3rem">#</th>
-          <th pSortableColumn="cedula">
+          <th pSortableColumn="cedula" style="width: 12rem">
             Cedula <p-sortIcon field="cedula"></p-sortIcon>
           </th>
           <th pSortableColumn="nombre">
@@ -36,6 +36,7 @@
           <th pSortableColumn="salario">
             Salario <p-sortIcon field="salario"></p-sortIcon>
           </th>
+          <th style="width: 5rem">Retirar</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-rowIndex="rowIndex" let-persona>
@@ -44,6 +45,16 @@
           <td>{{ persona.cedula }}</td>
           <td>{{ persona.nombre }}</td>
           <td>{{ persona.salario | currency }}</td>
+          <td>
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-user-minus"
+              class="p-button-rounded p-button-danger p-button-text"
+              (click)="retirarPersona(persona)"
+            ></button>
+          </td>
         </tr>
       </ng-template>
       <ng-template pTemplate="summary">
@@ -65,7 +76,7 @@
 </div>
 
 <p-dialog
-  header="{{tituloModal}} Persona"
+  header="{{ tituloModal }} Persona"
   [(visible)]="displaySaveDialog"
   [focusOnShow]="false"
   showEffect="fade"
@@ -133,21 +144,21 @@
     </div>
   </form>
   <p-footer>
-      <button
-        type="button"
-        pButton
-        icon="pi pi-check"
-        (click)="displaySaveDialog = false; onGuardar()"
-        label="Aceptar"
-        [disabled]="!personaForm.valid"
-      ></button>
-      <button
-        type="button"
-        pButton
-        icon="pi pi-times"
-        (click)="displaySaveDialog = false; personaForm.reset()"
-        label="Cancelar"
-        class="ui-button-secondary"
-      ></button>
-    </p-footer>
+    <button
+      type="button"
+      pButton
+      icon="pi pi-check"
+      (click)="displaySaveDialog = false; onGuardar()"
+      label="Aceptar"
+      [disabled]="!personaForm.valid"
+    ></button>
+    <button
+      type="button"
+      pButton
+      icon="pi pi-times"
+      (click)="displaySaveDialog = false; personaForm.reset()"
+      label="Cancelar"
+      class="ui-button-secondary"
+    ></button>
+  </p-footer>
 </p-dialog>

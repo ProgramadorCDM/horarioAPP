@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
+/* Environment */
+import { API_URL } from 'src/environments/environment';
 
 
 // Contante que lleva la URL de la API_REST
-const AUTH_API: string = "http://152.200.130.126/ebackend/api/auth/";
-// const AUTH_API: string = "http://localhost:8090/api/auth/";
+const AUTH_API: string = `${API_URL}/auth/`;
 // Contante que nos permite enviar los datos como JSON usando HttpHeaders
 const httpOptions = {
   headers: new HttpHeaders({ "Content-Type": "application/json" })

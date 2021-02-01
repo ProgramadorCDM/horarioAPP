@@ -5,9 +5,13 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 // Modelo
 import { Proyecto } from "./../models/Proyecto";
+/* Environment */
+import { API_URL } from 'src/environments/environment';
 
-const API_URL: String = "http://152.200.130.126/ebackend/api/proyecto/";
-// const API_URL: String = "http://localhost:8090/api/proyecto/";
+/**
+ * Direccion base de la API_REST
+ */
+const URL: String = `${API_URL}/proyecto/`;
 
 @Injectable({
   providedIn: "root"
@@ -23,7 +27,7 @@ export class ProyectoService {
    * Metodo que nos permite listar todos los elementos de la API_REST
    */
   getAll(): Observable<any> {
-    return this.http.get(API_URL + "all");
+    return this.http.get(URL + 'all');
   }
 
   /**
@@ -34,8 +38,8 @@ export class ProyectoService {
   save(proyecto: Proyecto): Observable<any> {
     let headers = new HttpHeaders();
     headers = headers.set("Content-Type", "application/json");
-    return this.http.post(API_URL + "save", JSON.stringify(proyecto), {
-      headers: headers
+    return this.http.post(URL + 'save', JSON.stringify(proyecto), {
+      headers: headers,
     });
   }
 
@@ -44,6 +48,6 @@ export class ProyectoService {
    * @param id Parametro obtenido y enviado a la API_REST
    */
   delete(id: string): Observable<any> {
-    return this.http.get(API_URL + "delete/" + id);
+    return this.http.get(URL + 'delete/' + id);
   }
 }
