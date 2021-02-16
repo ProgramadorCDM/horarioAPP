@@ -89,7 +89,7 @@ export class EntradasComponent implements OnInit {
   ) {}
 
   obtenerPersonas() {
-    this.personaService.getAll().subscribe(
+    this.personaService.getAllActive().subscribe(
       (result: any) => {
         let personas: Persona[] = [];
         for (let i = 0; i < result.length; i++) {
