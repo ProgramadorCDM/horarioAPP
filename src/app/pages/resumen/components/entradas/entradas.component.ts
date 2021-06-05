@@ -146,7 +146,7 @@ export class EntradasComponent implements OnInit {
             if (this.roles.includes('ROLE_ADMIN')) {
               registros.push(registro);
             } else if (registro.users == this.currentUser.username) {
-              registros.push;
+              registros.push(registro);
             }
           }
           this.registros = registros.sort(function (a, b) {
