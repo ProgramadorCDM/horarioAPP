@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminGuard } from 'src/app/guards/admin.guard';
 import { LoginGuard } from 'src/app/guards/login.guard';
 import { EntradasComponent } from './components/entradas/entradas.component';
 import { HomeComponent } from './components/home/home.component';
@@ -24,10 +25,26 @@ const routes: Routes = [
         component: HomeComponent,
         canActivate: [LoginGuard],
       },
-      { path: 'personas', component: PersonasComponent },
-      { path: 'proyectos', component: ProyectosComponent },
-      { path: 'entradas', component: EntradasComponent },
-      { path: 'informes', component: InformesComponent },
+      {
+        path: 'personas',
+        component: PersonasComponent,
+        canActivate: [LoginGuard],
+      },
+      {
+        path: 'proyectos',
+        component: ProyectosComponent,
+        canActivate: [LoginGuard],
+      },
+      {
+        path: 'entradas',
+        component: EntradasComponent,
+        canActivate: [LoginGuard],
+      },
+      {
+        path: 'informes',
+        component: InformesComponent,
+        canActivate: [LoginGuard, AdminGuard],
+      },
     ],
     canActivate: [LoginGuard],
   },

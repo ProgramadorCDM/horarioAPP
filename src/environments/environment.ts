@@ -6,7 +6,8 @@ export const environment = {
   production: false
 };
 
-export const API_URL = 'http://localhost:8080/api';
+// export const API_URL = 'http://localhost:8080/api';
+export const API_URL = 'http://152.200.130.126/ebackend/api';
 
 /*
  * For easier debugging in development mode, you can import the following file
